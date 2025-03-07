@@ -1,0 +1,10 @@
+@media (max-width: 1024px) {
+    .custom-signin-button button {
+        width: 116px;
+        height: 33px;
+        top: 103px;
+        left: 23px;
+        position: absolute;
+        z-index: 1;
+    }
+}

@@ -52,6 +52,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
 const [isBeginning, setIsBeginning] = useState(true);
 const [isEnd, setIsEnd] = useState(false);
 
+const isDesktop = window.innerWidth >= 1024; // Check if the view is desktop
 
 
   // Autoplay settings
@@ -78,7 +79,7 @@ useEffect(() => {
   }
 }, []);
   return (
-    <div className={`relative ${showNavigation && arrowOut?'px-6 sm:px-10 2xl:px-[60px]':'px-3'}`}>
+    <div className={`relative ${isDesktop && showNavigation && arrowOut ? 'px-6 sm:px-10 2xl:px-[60px]' : ''}`}>
       <Swiper
         modules={[Autoplay, Navigation, FreeMode]}
         loop={loop}
@@ -114,7 +115,7 @@ useEffect(() => {
       </Swiper>
 
       {/* Custom navigation arrows */}
-      {showNavigation && (
+      {showNavigation && isDesktop && (
         <div
           ref={prevButtonRef}
           onClick={() => swiperRef.current?.slidePrev()}
@@ -124,7 +125,7 @@ useEffect(() => {
             <IoChevronBackOutline className={`!size-3 2xl:!size-5 font-bold text-xl ${arrowColor? '!text-black':''}`}/></div>}
         </div>
       )}
-      {showNavigation && (
+      {showNavigation && isDesktop && (
         <div
           onClick={() => swiperRef.current?.slideNext()}
           ref={nextButtonRef}

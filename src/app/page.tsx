@@ -1,16 +1,17 @@
-import Image from "next/image";
-import PlayStoreAppAd from "@/components/Banners/PlaystoreAppAd";
-import SearchSection from "@/components/SearchSection";
-import GallerySlider from "@/components/JobDetail/Slider/GallarySlider";
-import CompanyCard from "@/components/Cards/CompanyCard";
-import JobtypeCard from "@/components/Cards/JobtypeCard";
-import IndustryCard from "@/components/Cards/IndustryCard";
-import CareerSkill from "@/components/Cards/CareerSkill";
-import FindCareerSection from "@/components/FindeCareerSection";
-import SuccessCard from "@/components/Cards/SuccessCard";
-import ArticleCard from "@/components/Cards/ArticleCard";
-import Interviewlaptop from "@/components/Nudges/Home/Interviewlaptop";
-import ResumeBuilder from "@/components/Nudges/Home/ResumeBuilder";
+import Image from "next/image"
+import PlayStoreAppAd from "@/components/Banners/PlaystoreAppAd"
+import SearchSection from "@/components/SearchSection"
+import GallerySlider from "@/components/JobDetail/Slider/GallarySlider"
+import CompanyCard from "@/components/Cards/CompanyCard"
+import JobtypeCard from "@/components/Cards/JobtypeCard"
+import IndustryCard from "@/components/Cards/IndustryCard"
+import CareerSkill from "@/components/Cards/CareerSkill"
+import FindCareerSection from "@/components/FindeCareerSection"
+import SuccessCard from "@/components/Cards/SuccessCard"
+import ArticleCard from "@/components/Cards/ArticleCard"
+import Interviewlaptop from "@/components/Nudges/Home/Interviewlaptop"
+import ResumeBuilder from "@/components/Nudges/Home/ResumeBuilder"
+
 export default function Home() {
     const jobsList = [
         {
@@ -68,7 +69,7 @@ export default function Home() {
     ]
 
     const successSlides = successList.map((success, index) => (
-        <div className={`success-story-card ${index % 2 === 0 ? 'even' : 'odd'}`}>
+        <div key={index} className={`success-story-card ${index % 2 === 0 ? 'even' : 'odd'}`}>
           <SuccessCard key={index} {...success} />
         </div>
       ));
@@ -216,21 +217,28 @@ export default function Home() {
         <main>
             <section className=''>
                 <div className=''>
-                    <Image src='/new-assets/banners/Hero banner.png' quality={100} alt="" width={3840} height={1000}
-                    className="w-full h-auto"
+                    <Image 
+                        src='/new-assets/banners/Hero banner.png' 
+                        quality={100} 
+                        alt="" 
+                        width={3840} 
+                        height={1000}
+                        className="w-full h-[140px] sm:h-auto" // Adjust height for mobile view
                     />
                 </div>
                 <div className="bg-[#F5F5F5]">
                     <div className="container search-section px-5 py-8 md:px-14 md:py-12 xl:px-24 xl:py-14 2xl:px-20">
-                        <h2 className='text-black text-center text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[64px] mb-5 xl:mb-8 font-medium'>Find your dream job with <span className="font-kalam font-bold text-red">Kaabil!</span></h2>
+                        <h2 className='text-black text-center text-xl md:text-3xl 2xl:text-[40px] 2xl:leading-[64px] mb-5 xl:mb-8 font-medium whitespace-nowrap overflow-hidden text-ellipsis'>
+                            Find your dream job with <span className="font-kalam font-bold text-red">Kaabil!</span>
+                        </h2>
                         <SearchSection />
                     </div>
                 </div>
             </section>
 
-            <section className="bg-[#F6F7F7] py-5 xl:py-6">
+            <section className="bg-[#F6F7F7] py-5 xl:py-6 ">
                 <h2 className='text-black text-center text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[64px] mb-5 2xl:mb-4 font-medium'>Top companies <span className="font-kalam font-bold text-red">hiring</span> now</h2>
-                <div className="w-full flex flex-col items-center mb-5 md:mb-8 2xl:mb-12  mx-auto">
+                <div className="w-full flex flex-col items-center mb-5 md:mb-8 2xl:mb-12 mx-auto">
                     <div className="container no-pad">                        
                         <div className="block">
                             <GallerySlider
@@ -241,10 +249,10 @@ export default function Home() {
                             autoplay={true}
                             autoplayDuration={3000}
                             freeMode={false}
-                            slidesPerView={3}
+                            slidesPerView={2}
                             breakpoints={{
                                 480:{
-                                    slidesPerView: 3,
+                                    slidesPerView: 2,
                                 },
                                 768: {
                                   slidesPerView: 4,
@@ -286,10 +294,10 @@ export default function Home() {
                             autoplay={true}
                             autoplayDuration={3000}
                             freeMode={false}
-                            slidesPerView={3}
+                            slidesPerView={2}
                             breakpoints={{
                                 480:{
-                                    slidesPerView: 3,
+                                    slidesPerView: 2,
                                 },
                                 768: {
                                   slidesPerView: 4,
@@ -368,9 +376,72 @@ export default function Home() {
                 <FindCareerSection/>
                 </div>
             </section>
+            
+            {/* Why Choose Kaabil Section - Modified for Mobile */}
             <section className="">
-                <div className="container gap-5 xl:gap-10 2xl:gap-14 flex flex-col md:flex-row-reverse items-center py-5 md:py-8 xl:py-14 2xl:py-16  mx-auto">
-                    <div className="section-heading mb-5 xl:mb-8 flex-1">
+                <div className="container gap-5 xl:gap-10 2xl:gap-14 flex flex-col md:flex-row-reverse items-center py-5 md:py-8 xl:py-14 2xl:py-16 mx-auto px-4 sm:px-6 md:px-0">
+                    {/* Mobile View (Only shows on small screens) */}
+                    <div className="md:hidden w-full">
+                        <div className="mb-5">
+                            <h2 className='text-black text-2xl font-medium mb-2'>
+                                Why choose <span className="font-kalam font-bold text-red">Kaabil?</span>
+                            </h2>
+                            <p className="font-normal">
+                                <span className="font-semibold">Kaabil, in partnership with Mahindra Rise,</span> empowers women jobseekers, especially first-timers, by connecting them to diverse opportunities, local jobs, and skill development resources.
+                            </p>
+                        </div>
+                        
+                        <div className="my-5 space-y-3">
+                            <div className="flex gap-3 items-start">
+                                <strong className="text-white flex-shrink-0 grid place-items-center bg-[#EE7487] rounded-full size-7">1</strong>
+                                <div className="block">
+                                    <h5 className="font-semibold">Jobs tailored for you:</h5>
+                                    <p>Find roles that match your skills and career goals.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3 items-start">
+                                <strong className="text-white flex-shrink-0 grid place-items-center bg-[#EE7487] rounded-full size-7">2</strong>
+                                <div className="block">
+                                    <h5 className="font-semibold">Entry-level friendly:</h5>
+                                    <p>Perfect for young girls starting their careers.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3 items-start">
+                                <strong className="text-white flex-shrink-0 grid place-items-center bg-[#EE7487] rounded-full size-7">3</strong>
+                                <div className="block">
+                                    <h5 className="font-semibold">Upskill as you go:</h5>
+                                    <p>Learn new skills while applying for jobs.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3 items-start">
+                                <strong className="text-white flex-shrink-0 grid place-items-center bg-[#EE7487] rounded-full size-7">4</strong>
+                                <div className="block">
+                                    <h5 className="font-semibold">Trusted by employers:</h5>
+                                    <p>Connect with companies looking for fresh talent.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="flex justify-between pt-3 mb-4">
+                            <div className="text-red">
+                                <span className="font-semibold text-lg leading-[140%]">500k+</span> <br /> 
+                                <span className="block text-xs text-center w-[105px]">Women on the platform</span>
+                            </div>
+                            <div className="text-red">
+                                <span className="font-semibold text-lg leading-[140%]">3000+</span> <br /> 
+                                <span className="block text-xs text-center w-[110px]">Women joined skill program</span>
+                            </div>
+                            <div className="text-red">
+                                <span className="font-semibold text-lg leading-[140%]">3000+</span> <br /> 
+                                <span className="block text-xs text-center w-[130px]">Women got hired</span>
+                            </div>
+                        </div>
+                        
+                        <button className='text-xs w-full bg-red text-white py-3 rounded-md mt-3'>Read More</button>
+                    </div>
+                    
+                    {/* Desktop View (Hidden on mobile) */}
+                    <div className="section-heading mb-5 xl:mb-8 flex-1 hidden md:block">
                         <h2 className='text-black text-start text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[64px] font-medium mb-2'>Why choose <span className="font-kalam font-bold text-red">Kaabil?</span></h2>
                         <p className="font-normal xl:text-sm 2xl:text-lg 2xl:leading-[29px]"><span className="font-semibold">Kaabil, in partnership with Mahindra Rise,</span> empowers women jobseekers, especially first-timers, by connecting them to diverse opportunities, local jobs, and skill development resources.</p>
                         <div className="my-5 xl:my-7 2xl:my-8 space-y-3 md:space-y-5 2xl:space-y-6">
@@ -410,6 +481,7 @@ export default function Home() {
                             </div>
                             <div className="text-red">
                                 <span className="font-semibold text-lg md:text-3xl 2xl:text-[40px] leading-[140%]">3000+</span> <br /> 
+                                <span className="block text-xs">3000+</span> <br /> 
                                 <span className="block text-xs xl:text-sm text-center w-[110px]">Women joined skill program</span>
                             </div>
                             <div className="text-red">
@@ -419,15 +491,15 @@ export default function Home() {
                         </div>
                         <button className='text-xs 2xl:text-base w-[170px] 2xl:w-[247px] 2xl:h-[50px] mt-3 2xl:mt-6 3xl:mt-[36px]'>Read More</button>
                     </div>
-                    <div className="flex-1 order-1">                        
-                        <Image src={`/new-assets/banners/why-choose-home.png`} width={704} height={735} alt="" className="w-full h-auto" />
+                    <div className="flex-1 order-1 hidden md:block">                        
+                        <Image src="/new-assets/banners/why-choose-home.png" width={704} height={735} alt="" className="w-full h-auto" />
                     </div>
                 </div>
             </section>
             <section className="bg-red">
                 <div className="w-full flex flex-col items-center py-5 md:py-8 xl:py-14 2xl:py-[50px] mx-auto">
                     <div className="section-heading mb-5">
-                        <h2 className='text-white text-center text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[46px] font-medium mb-2'>Meet the women who’ve found <br />
+                        <h2 className='text-white text-center text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[46px] font-medium mb-2'>Meet the women who've found <br />
                         <span className="font-kalam font-bold">career success  </span>with Kaabil.</h2>
                     </div>
                     <div className="container big !px-5">                        
@@ -442,13 +514,13 @@ export default function Home() {
                             autoplayDuration={3000}
                             freeMode={false}
                             arrowColor="white"
-                            slidesPerView={1.4}
+                            slidesPerView={1}
                             breakpoints={{
                                 480:{
-                                    slidesPerView: 2,
+                                    slidesPerView: 1,
                                 },
                                 768: {
-                                  slidesPerView: 2.5,
+                                  slidesPerView: 2,
                                 },
                                 1024: {
                                   slidesPerView: 4,
@@ -485,7 +557,7 @@ export default function Home() {
                             slidesPerView={1}
                             breakpoints={{
                                 768: {
-                                  slidesPerView: 1.5,
+                                  slidesPerView: 1,
                                 },
                                 1024: {
                                   slidesPerView: 2,
