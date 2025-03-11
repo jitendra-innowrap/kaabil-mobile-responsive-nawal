@@ -16,7 +16,7 @@ export default function CompanyCard({icon, title, jobUrl}:jobcardtype) {
             />
             <h3 className="font-medium text-xs h-[50px] lg:text-sm lg:h-[60px] 2xl:text-xl 2xl:h-[79px] mt-3 2xl:mt-4 line-clamp-3" title={title}>{title}</h3>
         </div>
-        <Link className="text-xs w-full 2xl:text-lg font-semibold justify-self-end" href={'/company/profile/1506'}>
+        <Link className="text-xs w-full 2xl:text-lg font-semibold justify-self-end text-red" href={'/company/profile/1506'}>
             View Jobs
         </Link>
     </div>

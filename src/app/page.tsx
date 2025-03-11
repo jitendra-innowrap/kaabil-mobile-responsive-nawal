@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image"
 import PlayStoreAppAd from "@/components/Banners/PlaystoreAppAd"
 import SearchSection from "@/components/SearchSection"
@@ -11,8 +12,67 @@ import SuccessCard from "@/components/Cards/SuccessCard"
 import ArticleCard from "@/components/Cards/ArticleCard"
 import Interviewlaptop from "@/components/Nudges/Home/Interviewlaptop"
 import ResumeBuilder from "@/components/Nudges/Home/ResumeBuilder"
+import { useEffect, useState } from "react"
+
+interface Job {
+    icon: string;
+    title: string;
+    jobUrl: string;
+}
+
+interface Success {
+    name: string;
+    role: string;
+    image: string;
+    video: string;
+}
+
+interface Industry {
+    icon: string;
+    title: string;
+    jobUrl: string;
+    color: string;
+}
+
+interface Skill {
+    image: string;
+    title: string;
+    link: string;
+    index: string;
+}
+
+interface JobType {
+    icon: string;
+    title: string;
+    jobUrl: string;
+}
+
+const truncateText = (text: string, wordLimit: number): string => {
+    return text.split(" ").slice(0, wordLimit).join(" ");
+};
+
+const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    return isMobile;
+};
 
 export default function Home() {
+    const isMobile = useIsMobile();
+
     const jobsList = [
         {
          icon: "/new-assets/company-icons/image (1).png",
@@ -80,7 +140,7 @@ export default function Home() {
     ]
     
       const slides = jobsList.map((job, index) => (
-        <CompanyCard key={index} {...job} />
+        <CompanyCard key={index} {...job} title={truncateText(job.title, 2)} />
     )); 
     const articleSlides = jobsList.map((job, index) => (
         <ArticleCard key={index} {...job} />
@@ -213,6 +273,10 @@ export default function Home() {
            },
     ]
 
+    const jobTypeCards = JobTypes.map((job, index) => (
+        <JobtypeCard key={index} {...job} title={isMobile ? truncateText(job.title, 2) : job.title} />
+    ));
+
     return (
         <main>
             <section className=''>
@@ -249,7 +313,7 @@ export default function Home() {
                             autoplay={true}
                             autoplayDuration={3000}
                             freeMode={false}
-                            slidesPerView={2}
+                            slidesPerView={2.6}
                             breakpoints={{
                                 480:{
                                     slidesPerView: 2,
@@ -269,17 +333,15 @@ export default function Home() {
                             />
                         </div>
                     </div>
-                    <button className="mx-auto text-xs 2xl:text-base font-normal 3xl:w-[252px] 3xl:h-[50px] mt-6 md:mt-8">View all companies</button>
+                    <button className="mx-auto text-xs 2xl:text-base font-normal 3xl:w-[300px] 3xl:h-[50px] mt-6 md:mt-8 bg-red text-white py-3 rounded-md">View all companies</button>
                 </div>
             </section>
 
             <section className="section-shadow">
                 <div className="w-full flex flex-col items-center py-5 md:py-8 xl:py-14 2xl:py-16 mx-auto">
                 <h2 className='text-black text-center text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[64px] mb-5 xl:mb-6 font-medium'>What type of <span className="font-kalam text-red font-bold">job</span> are you looking for?</h2>
-                <div className="container small grid grid-cols-1 lg:grid-cols-3 gap-4 2xl:gap-6 w-full mb-5 md:mb-8 xl:mb-14 2xl:mb-[84px]">
-                    {JobTypes.map((job, index) => (
-                    <JobtypeCard key={index} {...job} />
-                    ))}
+                <div className="container small grid grid-cols-2 lg:grid-cols-3 gap-4 2xl:gap-6 w-full mb-5 md:mb-8 xl:mb-14 2xl:mb-[84px]">
+                    {jobTypeCards}
                 </div>
                 <h2 className='text-black text-center text-2xl md:text-3xl 2xl:text-[40px] 2xl:leading-[64px] mb-5 xl:mb-6 font-medium'>Explore job opportunities across top  <span className="font-kalam text-red font-bold">industries</span> </h2>
 
@@ -294,10 +356,10 @@ export default function Home() {
                             autoplay={true}
                             autoplayDuration={3000}
                             freeMode={false}
-                            slidesPerView={2}
+                            slidesPerView={2.6}
                             breakpoints={{
                                 480:{
-                                    slidesPerView: 2,
+                                    slidesPerView: 2.6,
                                 },
                                 768: {
                                   slidesPerView: 4,
@@ -556,6 +618,9 @@ export default function Home() {
                             freeMode={false}
                             slidesPerView={1}
                             breakpoints={{
+                                480:{
+                                    slidesPerView: 2,
+                                },
                                 768: {
                                   slidesPerView: 1,
                                 },

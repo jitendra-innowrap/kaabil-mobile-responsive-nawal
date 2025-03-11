@@ -6,7 +6,7 @@ export default function PlayStoreAppAd() {
     <>
       {/* Mobile view */}
       <section className="md:hidden container small">
-        <div className="flex flex-col items-start bg-[#E41C3B] px-4 py-8 rounded-[32px]">
+        <div className="flex flex-col items-start bg-[#E41C3B] !px-28 py-8 rounded-[0px]">
           <p className="text-white text-base mb-2 text-left">
             Download now and enjoy a seamless job-hunting experience.
           </p>

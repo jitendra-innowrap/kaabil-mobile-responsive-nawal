@@ -1,4 +1,3 @@
-
 import Image from 'next/image'
 import React from 'react'
 import { SlGlobe } from 'react-icons/sl'
@@ -9,34 +8,48 @@ import SignInButton from './SignInButton'
 import HeaderSearch from './HeaderSearch'
 
 export default function Header() {
-    function closeSideMenu(): void {
-        const sideMenu = document.querySelector('.side-menu');
-        if (sideMenu) {
-            sideMenu.classList.remove('open');
-        }
+  function closeSideMenu(): void {
+    const sideMenu = document.querySelector('.side-menu');
+    if (sideMenu) {
+      sideMenu.classList.remove('open');
     }
+  }
+
   return (
     <header className="sticky top-0 bg-white z-[101]">
       <div className="relative">
         <div className="flex justify-center m-[1px] bg-white">
-          <div className="flex container lg:justify-start items-center sm:container-mobile sm:!p-0 sm:!m-0">
-            {/* Mobile View - Logo and SignIn Button */}
-            <div className="flex w-full h-2 items-center lg:hidden justify-evenly p-0  container-mobile">
+          <div className="flex container lg:justify-start items-center sm:!p-0 sm:!m-0">
+            
+            {/* -------------- MOBILE VIEW -------------- */}
+            <div className="lg:hidden w-full relative flex items-center h-[60px]">
+              {/* Left: BurgerMenu icon (absolute) */}
+              <div className="absolute left-4">
                 <BurgerMenu />
-              <Link href="/" className="relative">
+              </div>
+
+              {/* Center: Kaabil logo */}
+              <Link href="/" className="ml-14">
                 <Image
-                  height={70}
-                  width={100}
+                  height={40}
+                  width={120}
                   src="/new-assets/logos/Kaabil logo.png"
-                  className="w-[100px] h-[45px]"
                   alt="Kaabil logo"
+                  className="h-auto"
                 />
               </Link>
-              <SignInButton  />
+
+              {/* Right: Sign In button (absolute) */}
+              <div className="absolute right-4">
+                <SignInButton />
+              </div>
             </div>
 
-            {/* Desktop View */}
-            <Link href="/" className="hidden lg:flex relative pr-4 md:pr-6 2xl:pr-14 items-center">
+            {/* -------------- DESKTOP VIEW -------------- */}
+            <Link
+              href="/"
+              className="hidden lg:flex relative pr-4 md:pr-6 2xl:pr-14 items-center"
+            >
               <Image
                 height={70}
                 width={141}
@@ -48,46 +61,99 @@ export default function Header() {
 
             <div className="hidden lg:flex h-full flex-col w-full">
               <div className="flex h-full justify-between items-center">
+                {/* Nav Links */}
                 <ul className="flex py-4 gap-3 xl:gap-4 2xl:gap-[30px]">
                   <li className="flex">
-                    <Link href="/jobs" className="text-Grey hover:text-black font-medium hover:font-semibold text-xs 2xl:text-base relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px] hover:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0">
+                    <Link
+                      href="/jobs"
+                      className="text-Grey hover:text-black font-medium hover:font-semibold text-xs 2xl:text-base
+                      relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px]
+                      hover:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0"
+                    >
                       Jobs
                     </Link>
                   </li>
                   <li className="relative group/menu cursor-pointer flex">
-                    <Link href="/" className="text-Grey hover:text-black font-medium text-xs 2xl:text-base group-hover/menu:font-semibold relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px] group-hover/menu:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0">
+                    <Link
+                      href="/"
+                      className="text-Grey hover:text-black font-medium text-xs 2xl:text-base group-hover/menu:font-semibold
+                      relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px]
+                      group-hover/menu:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0"
+                    >
                       Career Tools
                     </Link>
                     <BiChevronDown className="font-light 2xl:text-2xl text-Grey group-hover/menu:text-black" />
                     <div className="absolute z-30 hidden group-hover/menu:block top-0 left-0">
                       <div className="bg-white shadow-default mt-[40px] 2xl:mt-[62px] rounded-xl w-[180px] 2xl:w-[288px] border border-lightGrey divide-y divide-lightGrey">
-                        <Link href="/" className="block text-Grey hover:text-black py-3 2xl:py-4 font-medium hover:font-semibold text-xs 2xl:text-base px-5">Resume Builder</Link>
-                        <Link href="/" className="block text-Grey hover:text-black py-3 2xl:py-4 font-medium hover:font-semibold text-xs 2xl:text-base px-5">Career Guide</Link>
-                        <Link href="/" className="block text-Grey hover:text-black py-3 2xl:py-4 font-medium hover:font-semibold text-xs 2xl:text-base px-5">Mock Interviews</Link>
+                        <Link
+                          href="/"
+                          className="block text-Grey hover:text-black py-3 2xl:py-4 font-medium hover:font-semibold
+                          text-xs 2xl:text-base px-5"
+                        >
+                          Resume Builder
+                        </Link>
+                        <Link
+                          href="/"
+                          className="block text-Grey hover:text-black py-3 2xl:py-4 font-medium hover:font-semibold
+                          text-xs 2xl:text-base px-5"
+                        >
+                          Career Guide
+                        </Link>
+                        <Link
+                          href="/"
+                          className="block text-Grey hover:text-black py-3 2xl:py-4 font-medium hover:font-semibold
+                          text-xs 2xl:text-base px-5"
+                        >
+                          Mock Interviews
+                        </Link>
                       </div>
                     </div>
                   </li>
                   <li className="flex">
-                    <Link href="/" className="text-Grey hover:text-black font-medium hover:font-semibold text-xs 2xl:text-base relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px] hover:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0">
+                    <Link
+                      href="/"
+                      className="text-Grey hover:text-black font-medium hover:font-semibold text-xs 2xl:text-base
+                      relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px]
+                      hover:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0"
+                    >
                       Skill Centre
                     </Link>
                   </li>
                   <li className="flex">
-                    <Link href="/" className="text-Grey hover:text-black font-medium hover:font-semibold text-xs 2xl:text-base relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px] hover:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0">
+                    <Link
+                      href="/"
+                      className="text-Grey hover:text-black font-medium hover:font-semibold text-xs 2xl:text-base
+                      relative after:w-full after:h-[3px] 2xl:after:h-1 after:rounded-[4px]
+                      hover:after:bg-red after:absolute after:bottom-[-8px] 2xl:after:bottom-[-12px] after:left-0"
+                    >
                       About Us
                     </Link>
                   </li>
                 </ul>
+
+                {/* Search component */}
                 <HeaderSearch />
+
+                {/* Right-side Icons */}
                 <ul className="flex gap-[10px] items-center">
                   <li className="relative group/menu text-Grey flex">
-                    <Link href="/" className="relative text-black font-thin flex items-center text-xs 2xl:text-base p-2 border border-[#e3e3e3] rounded-lg">
-                      <Image src={'/new-assets/icons/globe.svg'} width={19} height={19} className="mr-1" alt="globe icon" /> English
+                    <Link
+                      href="/"
+                      className="relative text-black font-thin flex items-center text-xs 2xl:text-base p-2 border border-[#e3e3e3] rounded-lg"
+                    >
+                      <Image
+                        src={'/new-assets/icons/globe.svg'}
+                        width={19}
+                        height={19}
+                        className="mr-1"
+                        alt="globe icon"
+                      />{' '}
+                      English
                       <BiChevronDown className="font-medium 2xl:text-2xl text-black" />
                     </Link>
                   </li>
                   <li>
-                    <SignInButton  />
+                    <SignInButton />
                   </li>
                   <li>
                     <Image
@@ -103,12 +169,9 @@ export default function Header() {
               </div>
             </div>
 
-         
           </div>
         </div>
       </div>
     </header>
   )
 }
-
-

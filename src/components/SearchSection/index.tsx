@@ -7,6 +7,7 @@ import { HiMagnifyingGlass, HiOutlineAdjustmentsHorizontal } from 'react-icons/h
 import Select from 'react-select'
 import { getSessionData } from '../utils/deviceId'
 import { notFound } from 'next/navigation'
+import Layer1 from '../../../public/assets/icons/Layer_1.svg'
 import Image from 'next/image'
 
 export default function SearchSection() {
@@ -29,8 +30,8 @@ export default function SearchSection() {
             className="w-full !h-4 text-sm border-none outline-none placeholder-gray-400"
           />
           {/* Right filter icon */}
-          <button className='!bg-black !text-white !rounded-full !p-2 !w-[28px] !h-[28px] !flex !items-center !justify-center !m-0'>
-            <HiOutlineAdjustmentsHorizontal className="text-white w-4 h-4" />
+          <button className='!bg-black !text-white !rounded-full !p-2 !w-[50px] !h-[42px] !flex !items-center !justify-center !m-0'>
+            <Image src={Layer1} alt="Filter" width={90} height={90} />
           </button>
         </div>
       </div>

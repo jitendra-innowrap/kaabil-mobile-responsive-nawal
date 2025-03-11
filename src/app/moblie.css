@@ -250,6 +250,26 @@ h1, h2, h3, h4, h5, h6, strong {
     cursor: pointer;
   }
 
+  .job-type-card {
+    width: 48%; /* Ensure two cards fit in a single row */
+    max-width: 48%; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .job-type-card h3 {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px; /* Limit text to two words */
+  }
+
   .job-type-card:hover .arrow {
     scale: 1.1;
   }
