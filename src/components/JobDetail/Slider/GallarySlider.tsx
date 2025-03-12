@@ -51,9 +51,10 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
 // State to track if the Swiper is at the first or last slide
 const [isBeginning, setIsBeginning] = useState(true);
 const [isEnd, setIsEnd] = useState(false);
-
-const isDesktop = window.innerWidth >= 1024; // Check if the view is desktop
-
+let isDesktop
+if (typeof window !== 'undefined') {
+  isDesktop = window.innerWidth >= 1024;
+}
 
   // Autoplay settings
   const autoplayConfig = autoplay
